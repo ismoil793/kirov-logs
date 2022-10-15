@@ -1,8 +1,9 @@
 {
-  "name": "nextjs-blog-theme",
-  "description": "A customizable Next.js and Tailwind blog starter. Designed by the Bejamas agency.",
-  "author": "Bejamas and Netlify Inc.",
+  "name": "kirov-logs",
+  "description": "A customizable Next.js and Tailwind blog starter.",
+  "author": "Ismoil Shokirov inspired by Bejamas and Netlify Inc.",
   "contributors": [
+    "Ismoil Shokirov",
     "Charlie Gerard",
     "Prince Wilson",
     "Tara Manicsic",
