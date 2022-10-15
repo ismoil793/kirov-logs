@@ -38,3 +38,9 @@ body {
     border-color: transparent
   }
 }
+
+@media only screen and (max-width: 991.98px) {
+  pre.language-js code {
+    font-size: 0.75rem;
+  }
+}
