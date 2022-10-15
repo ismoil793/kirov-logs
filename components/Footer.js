@@ -80,8 +80,12 @@ const ThemeSwitcher = () => {
 export default function Footer({ copyrightText }) {
   return (
     <footer className="py-16 flex flex-col items-center">
-      <p className="dark:text-white uppercase mb-3 font-bold opacity-60">
-        {copyrightText}
+      <p className="dark:text-white mb-3 font-bold opacity-60">
+        {/* {copyrightText} */}
+        More about me is{" "}
+        <a href="https://shokirov.uz" target="_blank" rel="noreferrer" className="text-blue-500 underline">
+          here
+        </a>
       </p>
       <ThemeSwitcher />
     </footer>

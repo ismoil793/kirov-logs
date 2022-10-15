@@ -1,0 +1,88 @@
+---
+title: How to dynamically get window width and height in ReactJS
+description: "We will create a react hook called useDeviceSize() to get the window.width and window.height"
+date: Jul 24 2021
+---
+
+First of all we need to remember that in ReactJS **window** object is available only after the component is mounted.
+So, we can use a **useEffect** hook to subscribe for **_window resize_** event and unsubscribe from it on component unmount.
+
+```js
+const useDeviceSize = () => {
+
+  const handleWindowResize = () => {}
+
+  useEffect(() => {
+    // component is mounted and window is available
+    handleWindowResize();
+    window.addEventListener('resize', handleWindowResize);
+    // unsubscribe from the event on component unmount
+    return () => window.removeEventListener('resize', handleWindowResize);
+  }, []);
+  
+}
+```
+
+Next up we need a state to keep track of width and height of the window
+```js
+const useDeviceSize = () => {
+  const [width, setWidth] = useState(0)
+  const [height, setHeight] = useState(0)
+
+  const handleWindowResize = () => {
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
+  }
+
+  ...
+}
+```
+
+Complete code snippet of **useDeviceSize()** hook:
+
+```js
+import React, {useState, useEffect} from 'react'
+
+const useDeviceSize = () => {
+
+  const [width, setWidth] = useState(0)
+  const [height, setHeight] = useState(0)
+
+  const handleWindowResize = () => {
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
+  }
+
+  useEffect(() => {
+    // component is mounted and window is available
+    handleWindowResize();
+    window.addEventListener('resize', handleWindowResize);
+    // unsubscribe from the event on component unmount
+    return () => window.removeEventListener('resize', handleWindowResize);
+  }, []);
+
+  return [width, height]
+
+}
+
+export default useDeviceSize 
+```
+
+**Below is the use case of our hook:**
+```js
+import React from 'react'
+import useDeviceSize from './yourPathToHook'
+
+const ExampleComponent = () => {
+    const [width, height] = useDeviceSize()
+
+    return (
+        <div>
+            width of window: {width}
+            height of window: {height}
+        </div>
+    )
+}
+```
+
+Go back [home](/).
