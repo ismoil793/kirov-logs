@@ -1,0 +1,86 @@
+---
+title: Create a dark/light theme in ReactJS
+description: "In this tutorial we will create a theme toggler using React.context"
+date: May 16 2021
+---
+
+Assuming that you already have a react app running, we will start by modifiying `App.js`
+
+We will create 2 contexts:
+    - To store theme value (ThemeContext)
+    - To update theme value (ThemeContextUpdate)
+
+Start
+1. We will create a separate file called `ThemeContext.js` for our context
+
+```jsx
+import {useState, useContext, createContext} from 'react'
+
+// create a new context to store value
+const ThemeContext = createContext()
+
+// create a new context to update value
+const ThemeContextUpdate = createContext()
+
+// create a hook to access the value of context
+// we will use this hook later in MyComponent.js
+export const useTheme = () => {
+    return useContext(ThemeContext)
+}
+
+export const useThemeUpdate = () => {
+    return useContext(ThemeContextUpdate)
+}
+
+export const ThemeProvider = ({children}) => {
+    const [theme, setTheme] = useState('light')
+
+    const toggleTheme = () => {
+        setTheme(prev => prev === 'light' ? 'dark' : 'light')
+    }
+
+    return (
+        <ThemeContext.Provider value={theme}>
+            <ThemeContextUpdate.Provider value={toggleTheme}>
+                {children}
+            </ThemeContextUpdate.Provider>
+        </ThemeContext.Provider>
+    )
+}
+```
+
+2. Inside `App.js` wrap its children with `ThemeProvider`
+
+```jsx
+import {ThemeProvider} from './ThemeContext'
+import {MyComponent} from './MyComponent'
+
+export const App = () => {
+
+    return (
+        <ThemeProvider>
+            <MyComponent />
+        </ThemeProvider>
+    )
+}
+```
+
+3. Create `MyComponent.js` which will have access to our theme from context
+
+```jsx
+import {useTheme, useThemeUpdate} from './ThemeContext'
+
+export const MyComponent = () => {
+    const theme = useTheme()
+    const toggleTheme = useThemeUpdate()
+
+    return (
+        <div>
+            <h1>Current theme is: {theme}</h1>
+            <button onClick={toggleTheme}>Change theme</button>
+        </div>
+    )
+}
+```
+
+## Take a look to the [`demo`](/examples/react-dark-theme)
