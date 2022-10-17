@@ -26,9 +26,6 @@ jobs:
       - name: build project
         run: npm run build
 
-      - name: e2e test
-        run: npm run cypress
-
       - name: lint code
         run: npm run lint
 
