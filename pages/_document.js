@@ -6,7 +6,9 @@ class MyDocument extends Document {
     return (
       <Html lang="en" className="theme-compiled">
         <Head>
-          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700&display=swap" rel="stylesheet" />
         </Head>
         <body
           className={`antialiased text-lg bg-white dark:bg-gray-900 dark:text-white leading-base`}
