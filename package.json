@@ -47,5 +47,9 @@
     "netlify-plugin-cypress": "~2.2.0",
     "postcss": "^8.4.4",
     "tailwindcss": "^3.0.0"
+  },
+  "engines": {
+    "npm": "^8",
+    "node": "^16"
   }
 }
