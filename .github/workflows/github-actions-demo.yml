@@ -2,9 +2,9 @@ name: GitHub Actions Deploy
 run-name: ${{ github.actor }} is performing CI/CD 🚀
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
