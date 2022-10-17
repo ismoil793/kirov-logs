@@ -1,5 +1,87 @@
 ---
 title: What is "use strict" in Javascript and its importance
-description: "This time we will discuss what the hell is the 'use strict' and why it is needed"
+description: "This time we will discuss what is the 'use strict' and why it is needed"
 date: Oct 17 2022
 ---
+
+You might have seen such a Javascript file containing _**use strict;**_ on top
+
+```js
+"use strict";
+```
+It is quite an important statement which makes a Javascript to run in a strict mode
+
+It is very handy to get rid of potential bugs, let's take a look to some examples
+
+
+```js
+myVariable = 10
+console.log(10)
+```
+It is just going to log `10` with no errors, even thogh we didn't use var, let or const keywords
+
+```
+10
+```
+
+However, if you use the strict mode like this:
+```java
+"use strict";
+
+myVariable = 10
+console.log(10)
+
+// Result:
+Uncaught ReferenceError: myVariable is not defined
+```
+
+Without strict mode being used you can do really weird things with Javascript
+```js
+undefined = "defined"
+```
+Value of **undefined** won't be changed because it **is ready only**, but it won't also print any errors
+
+```java
+"use strict";
+
+undefined = "defined"
+
+// Result:
+Uncaught TypeError: Cannot assign to read only property 'undefined'
+```
+
+```javascript
+
+function combine(x, x, z) {
+    return [x, x, z]
+}
+
+console.log(combine(1,2,3))
+
+// Result:
+[2,2,3] // because value of x is overwritten
+```
+
+It is just meaningless to redifine a function parameter
+
+```java
+"use strict";
+
+function combine(x, x, z) {
+    return [x, x, z]
+}
+
+console.log(combine(1,2,3))
+
+// Result:
+Uncaught SyntaxError: Duplicate parameter name 
+not allowed in this context
+```
+
+
+
+> Good news for those who use `module exports and imports`, because they use the strict mode by defautl.
+Moreover, class definitions will also use the strict mode.
+
+
+If you are interested in more details about **"use strict"**, I recommend you to watch [this video](https://www.youtube.com/watch?v=G9QTBS2x8U4)
