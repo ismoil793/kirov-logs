@@ -19,7 +19,9 @@
     "build": "next build",
     "start": "next start -p 3003",
     "export": "next build && next export",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress": "cypress run --browser chrome",
+    "cypress:dashboard": "cypress open"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.8.0",

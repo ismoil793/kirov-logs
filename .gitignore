@@ -38,3 +38,5 @@ yarn-error.log*
 
 # snyk security tool
 .dccache
+
+.idea
