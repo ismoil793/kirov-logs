@@ -1,3 +1,6 @@
+import {useCallback, useEffect, useState} from "react";
+import ArrowIcon from "./ArrowIcon";
+
 const sunIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -77,17 +80,48 @@ const ThemeSwitcher = () => {
   );
 };
 
-export default function Footer({ copyrightText }) {
-  return (
-    <footer className="py-16 flex flex-col items-center">
-      <p className="dark:text-white mb-3 font-bold opacity-60">
-        {/* {copyrightText} */}
-        More about me is{" "}
-        <a href="https://shokirov.uz" target="_blank" rel="noreferrer" className="text-blue-500 underline">
-          here
-        </a>
-      </p>
-      <ThemeSwitcher />
-    </footer>
-  );
+export default function Footer({copyrightText}) {
+   const [showScrollToTop, setShowScrollToTop] = useState(false)
+
+   const handleWindowScroll = useCallback(() => {
+      if (window.scrollY > 1000) {
+         setShowScrollToTop(true);
+      } else {
+         setShowScrollToTop(false);
+      }
+   }, [])
+
+   useEffect(() => {
+      window.addEventListener('scroll', handleWindowScroll);
+
+      return () => {
+         window.removeEventListener('scroll', handleWindowScroll);
+      }
+   }, []);
+
+   const handleScrollToTopClick = () => {
+      window.scrollTo({
+         top: 0,
+         behavior: "smooth",
+      });
+   }
+
+   return (
+       <footer className="py-16 flex flex-col items-center">
+          <p className="dark:text-white mb-3 font-bold opacity-60">
+             {/* {copyrightText} */}
+             More about me is{" "}
+             <a href="https://shokirov.uz" target="_blank" rel="noreferrer" className="text-blue-500 underline">
+                here
+             </a>
+          </p>
+          <ThemeSwitcher/>
+          {
+              showScrollToTop &&
+              <div className="scroll-to-top" onClick={handleScrollToTopClick}>
+                 <ArrowIcon className="scroll-to-top__icon"/>
+              </div>
+          }
+       </footer>
+   );
 }

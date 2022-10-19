@@ -34,7 +34,7 @@ body {
   padding-right: 5px;
 }
 
-.theme-switcher-style {
+.theme-switcher-style, .scroll-to-top  {
   top: 20px;
   right: 75px;
   position: fixed;
@@ -51,6 +51,23 @@ html.theme-compiled.dark .blog-title {
   border-radius: 10px;
   color: #1A202C;
   font-weight: 300;
+}
+
+.scroll-to-top {
+  top: auto;
+  bottom: 20px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 100%;
+  z-index: 1;
+  transform: rotate(-90deg);
+  cursor: pointer;
+}
+.scroll-to-top:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.scroll-to-top__icon {
 }
 
 @keyframes typing {
