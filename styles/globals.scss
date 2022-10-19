@@ -45,6 +45,17 @@ html.theme-compiled.dark .blog-title {
   color: #fff;
 }
 
+html.theme-compiled.dark {
+  body {
+    &::-webkit-scrollbar { width: 15px; height: 3px;}
+    &::-webkit-scrollbar-button {  background-color: #424242; }
+    &::-webkit-scrollbar-track-piece { background-color: #424242;}
+    &::-webkit-scrollbar-thumb { background-color: #686868; border-left: 2px solid #424242}
+    &::-webkit-scrollbar-corner { background-color: #686868;}
+    &::-webkit-resizer { background-color: #666;}
+  }
+}
+
 .blog-title {
   background-color: rgba(255, 255, 255, 0.36);
   padding: 15px 0;
