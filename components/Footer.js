@@ -1,5 +1,5 @@
-import {useCallback, useEffect, useState} from "react";
-import ArrowIcon from "./ArrowIcon";
+import { useCallback, useEffect, useState } from 'react';
+import ArrowIcon from './ArrowIcon';
 
 const sunIcon = (
   <svg
@@ -64,63 +64,67 @@ const ThemeSwitcher = () => {
       >
         {sunIcon}
       </button>
-        <button
-            type="button"
-            aria-label="Use Dark Mode"
-            onClick={() => {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }}
-            className="flex items-center h-full pr-2 dark:bg-primary rounded-3xl flex justify-center align-center p-2 w-24 h-10 transition"
-        >
-            {moonIcon}
-        </button>
+      <button
+        type="button"
+        aria-label="Use Dark Mode"
+        onClick={() => {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }}
+        className="flex items-center h-full pr-2 dark:bg-primary rounded-3xl flex justify-center align-center p-2 w-24 h-10 transition"
+      >
+        {moonIcon}
+      </button>
     </div>
   );
 };
 
-export default function Footer({copyrightText}) {
-   const [showScrollToTop, setShowScrollToTop] = useState(false)
+export default function Footer({ copyrightText }) {
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
 
-   const handleWindowScroll = useCallback(() => {
-      if (window.scrollY > 1000) {
-         setShowScrollToTop(true);
-      } else {
-         setShowScrollToTop(false);
-      }
-   }, [])
+  const handleWindowScroll = useCallback(() => {
+    if (window.scrollY > 1000) {
+      setShowScrollToTop(true);
+    } else {
+      setShowScrollToTop(false);
+    }
+  }, []);
 
-   useEffect(() => {
-      window.addEventListener('scroll', handleWindowScroll);
+  useEffect(() => {
+    window.addEventListener('scroll', handleWindowScroll);
 
-      return () => {
-         window.removeEventListener('scroll', handleWindowScroll);
-      }
-   }, []);
+    return () => {
+      window.removeEventListener('scroll', handleWindowScroll);
+    };
+  }, []);
 
-   const handleScrollToTopClick = () => {
-      window.scrollTo({
-         top: 0,
-         behavior: "smooth",
-      });
-   }
+  const handleScrollToTopClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
-   return (
-       <footer className="py-16 flex flex-col items-center">
-          <p className="dark:text-white mb-3 font-bold opacity-60">
-             {/* {copyrightText} */}
-             More about me is{" "}
-             <a href="https://shokirov.uz" target="_blank" rel="noreferrer" className="text-blue-500 underline">
-                here
-             </a>
-          </p>
-          <ThemeSwitcher/>
-          {
-              showScrollToTop &&
-              <div className="scroll-to-top" onClick={handleScrollToTopClick}>
-                 <ArrowIcon className="scroll-to-top__icon"/>
-              </div>
-          }
-       </footer>
-   );
+  return (
+    <footer className="py-16 flex flex-col items-center">
+      <p className="dark:text-white mb-3 font-bold opacity-60">
+        {/* {copyrightText} */}
+        More about me is{' '}
+        <a
+          href="https://shokirov.uz"
+          target="_blank"
+          rel="noreferrer"
+          className="text-blue-500 underline"
+        >
+          here
+        </a>
+      </p>
+      <ThemeSwitcher />
+      {showScrollToTop && (
+        <div className="scroll-to-top" onClick={handleScrollToTopClick}>
+          <ArrowIcon className="scroll-to-top__icon" />
+        </div>
+      )}
+    </footer>
+  );
 }
