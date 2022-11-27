@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import {getRandomAvatar} from "../utils/avatar-randomizer";
 
 export default function Header({ name }) {
   return (
@@ -12,7 +12,7 @@ export default function Header({ name }) {
             style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
           >
             <Image
-              src="/kirov.jpg"
+              src={getRandomAvatar()}
               alt="Blog brand img"
               width={128}
               height={128}
